@@ -3,19 +3,23 @@ const { getModule } = require("powercord/webpack");
 
 module.exports = class PluginName extends Plugin {
 	startPlugin() {
+		const getNoiseCancellation = getModule(['getNoiseCancellation'], false);
+		const getNoiseSuppression = getModule(['getNoiseSuppression'], false);
+		const setNoiseSuppression = getModule(['setNoiseSuppression'], false);
+
 		let allowChange = true;
 
 		// Run whenever Krisp is changed
-		getModule(['getNoiseCancellation'], false).addChangeListener(() => {
+		getNoiseCancellation.addChangeListener(() => {
 			if (
-				getModule(['getNoiseCancellation'], false).getNoiseCancellation() === false &&
-				getModule(['getNoiseSuppression'], false).getNoiseSuppression() === true &&
+				getNoiseCancellation.getNoiseCancellation() === false &&
+				getNoiseSuppression.getNoiseSuppression() === true &&
 				allowChange
 			) {
 				// Disable noise suppression once
-				getModule(['setNoiseSuppression'], false).setNoiseSuppression(false);
+				setNoiseSuppression.setNoiseSuppression(false);
 				allowChange = false
-			} else if (getModule(['getNoiseCancellation'], false).getNoiseCancellation() === true) {
+			} else if (getNoiseCancellation.getNoiseCancellation() === true) {
 				// Krisp is back on, allow changes again
 				allowChange = true
 			}
