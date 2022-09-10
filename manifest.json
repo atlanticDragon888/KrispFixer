@@ -1,0 +1,9 @@
+{
+    "name": "Krisp Fixer",
+    "version": "1.0.0",
+    "description": "Stops noise reduction from turning on after disabling Krisp",
+    "author": "Atlantic™#0001",
+    "license": "MIT",
+    "nsfw": false,
+    "permissions": "ext_api"
+  }
