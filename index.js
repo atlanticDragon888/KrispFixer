@@ -6,4 +6,6 @@ module.exports = class PluginName extends Plugin {
       if (getModule(['getNoiseCancellation'], false).getNoiseCancellation() === false && getModule(['getNoiseSuppression'], false).getNoiseSuppression() === true ){ getModule(['setNoiseSuppression'], false).setNoiseSuppression(false) }
     })
   }
+  pluginWillUnload () {
+  }
 }
