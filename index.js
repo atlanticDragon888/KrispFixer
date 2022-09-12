@@ -1,7 +1,7 @@
 const { Plugin } = require("powercord/entities");
 const { getModule } = require("powercord/webpack");
 
-module.exports = class PluginName extends Plugin {
+module.exports = class KrispFixer extends Plugin {
 	startPlugin() {
 		const { addChangeListener, getNoiseCancellation, getNoiseSuppression } = getModule(['getNoiseCancellation'], false);
 		const { setNoiseSuppression } = getModule(['setNoiseSuppression'], false);
@@ -24,5 +24,4 @@ module.exports = class PluginName extends Plugin {
 			}
 		})
 	}
-	pluginWillUnload() { }
 }
