@@ -10,14 +10,14 @@ module.exports = class KrispFixer extends Plugin {
 
     this.handleChange = () => {
 			if (
-				getNoiseCancellation() === false &&
-				getNoiseSuppression() === true &&
+				!getNoiseCancellation() &&
+				getNoiseSuppression() &&
 				allowChange
 			) {
 				// Disable noise suppression once
 				setNoiseSuppression(false);
 				allowChange = false
-			} else if (getNoiseCancellation() === true) {
+			} else if (getNoiseCancellation()) {
 				// Krisp is back on, allow changes again
 				allowChange = true
 			}
