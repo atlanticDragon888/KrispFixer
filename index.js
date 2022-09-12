@@ -24,4 +24,8 @@ module.exports = class KrispFixer extends Plugin {
 			}
 		})
 	}
+	pluginWillUnload() {
+    const { removeChangeListener } = getModule(['getNoiseCancellation'], false);
+    removeChangeListener()
+  }
 }
