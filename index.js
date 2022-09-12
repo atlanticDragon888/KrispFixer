@@ -8,8 +8,7 @@ module.exports = class KrispFixer extends Plugin {
 
 		let allowChange = true;
 
-		// Run whenever Krisp is changed
-		addChangeListener(() => {
+    this.handleChange = () => {
 			if (
 				getNoiseCancellation() === false &&
 				getNoiseSuppression() === true &&
@@ -22,10 +21,13 @@ module.exports = class KrispFixer extends Plugin {
 				// Krisp is back on, allow changes again
 				allowChange = true
 			}
-		})
+		}
+
+		// Run whenever Krisp is changed
+		addChangeListener(this.handleChange)
 	}
 	pluginWillUnload() {
     const { removeChangeListener } = getModule(['getNoiseCancellation'], false);
-    removeChangeListener()
+    removeChangeListener(this.handleChange)
   }
 }
